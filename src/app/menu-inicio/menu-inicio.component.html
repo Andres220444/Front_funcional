@@ -1,0 +1,43 @@
+<div class="main-container">
+    <div class="contact-bar">
+      <div class="contact-info">
+        <span>Llamanos: 01 8000 515 045</span>
+        <span>PBX: (604) 322 50 45</span>
+        <span>Email: infolaboratorioslicol.com</span>
+      </div>
+      <a href="#" class="data-policy">Política de Tratamiento de datos</a>
+    </div>
+  
+    <div class="content">
+      <div class="navbar">
+        <a routerLink="/catalogo_universal">Catálogo</a>
+        <a routerLink="/persona">Persona</a>
+        <a routerLink="/contactos">Contactos</a>
+        <a routerLink="/documentos">Documentos</a>
+        <a routerLink="/historial">Historial</a>
+      </div>
+  
+      <div class="container">
+        <img src="../assets/imagen_laboratorio.png" alt="Imagen central" class="main-image">
+  
+        <div class="buttons">
+          <button (mouseover)="showInfo('mision')" (mouseleave)="hideInfo()" class="btn">Misión</button>
+          <button (mouseover)="showInfo('vision')" (mouseleave)="hideInfo()" class="btn">Visión</button>
+        </div>
+  
+        <p class="info-text" *ngIf="infoText">{{ infoText }}</p>
+  
+        <div class="history">
+          <h2>Historia</h2>
+          <p>Laboratorios Licol S.A.S. Nace en 1956. En ese momento su portafolio contenía Agua oxigenada, Piperazina, Aceite de bacalao, 
+            Elixir “Licol” suplemento, entre otros. En la década de los 90 debido a la adquisición de la compañía se incursiona 
+            en el mercado de medicamentos y cosméticos, contribuyendo así al bienestar y mejoramiento de la salud en el mercado
+             colombiano. 25 años después Laboratorios Licol entra a ser parte de un grupo de empresas farmacéuticas junto con 
+             Laboratorios Remo de origen francés, ubicado en Bogotá. Al unir ambos portafolios la fusión Colombo-Francesa se 
+             proyecta en la industria, como un generador de bienestar mediante el desarrollo, producción y comercialización de 
+             marcas seguras y eficaces, con alto valor agregado y distribución a nivel nacional e internacional; adicionalmente
+              gracias a sus plantas cuenta con una  mayor capacidad de respuesta para los procesos productivos.</p>
+        </div>
+      </div>
+    </div>
+  </div>

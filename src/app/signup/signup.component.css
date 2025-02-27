@@ -1,0 +1,96 @@
+/* Contenedor principal */
+.main-container {
+  display: flex;
+  height: 100vh; /* Ocupa toda la altura de la pantalla */
+  background-image: url('../../assets/imagen_laboratorio.png'); /* Ruta a la imagen de fondo */
+  background-size: cover; /* Asegura que la imagen cubra todo el espacio */
+  background-position: center; /* Centra la imagen */
+}
+
+/* Barra de contacto */
+.contact-bar {
+  width: 250px; /* Ancho de la barra de contacto */
+  background-color: rgba(245, 245, 245, 0.9); /* Fondo semi-transparente */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.contact-info span {
+  margin-bottom: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+.data-policy {
+  color: #4d4dfd;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.data-policy:hover {
+  text-decoration: underline;
+}
+
+/* Contenido principal */
+.content {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Contenedor del formulario de registro */
+.signup-container {
+  width: 300px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  text-align: center;
+  background-color: rgba(249, 249, 249, 0.9); /* Fondo semi-transparente */
+}
+
+h2 {
+  color: #333;
+}
+
+label {
+  display: block;
+  margin: 10px 0 5px;
+  font-weight: bold;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  margin: 5px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+button {
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 5px 0;
+}
+
+button:disabled {
+  background-color: gray;
+}
+
+.error {
+  color: red;
+  margin-top: 10px;
+}

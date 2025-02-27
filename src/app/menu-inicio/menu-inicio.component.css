@@ -1,0 +1,122 @@
+/* Contenedor principal */
+.main-container {
+    display: flex;
+  }
+  
+  /* Barra de contacto */
+  .contact-bar {
+    width: 250px; /* Ancho de la barra de contacto */
+    background-color: #f5f5f5;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .contact-info span {
+    margin-bottom: 10px;
+    font-size: 14px;
+    color: #333;
+  }
+  
+  .data-policy {
+    color: #4d4dfd;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+  .data-policy:hover {
+    text-decoration: underline;
+  }
+  
+  /* Contenido principal */
+  .content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  /* Barra de navegación */
+  .navbar {
+    display: flex;
+    justify-content: space-around;
+    background-color: #22227d;
+    padding: 15px 0;
+  }
+  
+  .navbar a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    font-weight: bold;
+  }
+  
+  .navbar a:hover {
+    text-decoration: underline;
+  }
+  
+  /* Contenedor principal */
+  .container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  /* Imagen central */
+  .main-image {
+    width: 80%;
+    max-height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  
+  /* Botones */
+  .buttons {
+    margin-top: 20px;
+  }
+  
+  .btn {
+    background-color: #4d4dfd;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 5px;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+  
+  .btn:hover {
+    background-color: #22227d;
+  }
+  
+  /* Texto de misión/visión */
+  .info-text {
+    margin-top: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  
+  /* Sección historia */
+  .history {
+    background-color: #f5f5f5;
+    padding: 20px;
+    margin-top: 30px;
+    border-radius: 10px;
+    max-width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .history h2 {
+    font-size: 22px;
+    font-weight: bold;
+  }

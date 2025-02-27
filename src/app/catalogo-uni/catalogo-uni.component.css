@@ -1,0 +1,121 @@
+/* Estilo para el contenedor del catálogo */
+
+body {
+    background-color: #c79a9a; /* Un gris claro */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+.catalogo-container {
+    text-align: center; /* Centra el contenido horizontalmente */
+    padding: 20px;
+    background-color: #705959;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    max-width: 800px; /* Ajusta el ancho máximo según sea necesario */
+  }
+  
+  /* Estilo para la imagen de la doctora */
+  .doctora-image {
+    width: 300px; /* Ajusta el tamaño de la imagen */
+    height: auto;
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar profundidad */
+    margin: 20px 0; /* Espaciado superior e inferior */
+    display: block; /* Asegura que la imagen se comporte como un bloque */
+    margin-left: auto; /* Centra la imagen horizontalmente */
+    margin-right: auto;
+  }
+  
+  /* Estilo para el título */
+  .catalogo-container h1 {
+    color: #333;
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  /* Estilo para los botones */
+  button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 10px 5px; /* Espaciado entre botones */
+  }
+  
+  button:hover {
+    background-color: #0056b3;
+  }
+  
+  /* Estilo para los formularios */
+  form {
+    margin: 20px auto;
+    max-width: 600px;
+    background: rgb(145, 77, 77);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+  }
+  
+  form select,
+  form input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #be5656;
+    border-radius: 5px;
+    font-size: 14px;
+  }
+  
+  /* Estilo para las tablas */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  table th,
+  table td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+  }
+  
+  table thead {
+    background-color: #007bff;
+    color: white;
+  }
+  
+  table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+  }
+  
+  /* Estilo para las divisiones */
+  div {
+    margin-bottom: 20px;
+    padding: 10px;
+  }
+  
+  .dir {
+    text-align: center;
+  }
+  
+  .listaU,
+  .colo,
+  .Tipveh,
+  .Marc,
+  .TipDocc,
+  .Epps,
+  .pref,
+  .creaU,
+  .editU {
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  }
