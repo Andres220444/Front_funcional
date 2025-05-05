@@ -14,9 +14,16 @@ import { CatalogoUniComponent } from './catalogo-uni/catalogo-uni.component';
 import { MenuInicioComponent } from './menu-inicio/menu-inicio.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
+import { PersonasComponent } from './personas/personas.component';
+import { DocumentosComponent } from './documentos/documentos.component';
+
 
 // Servicio
 import { MiservicioService } from './miservicio.service';
+import { ClientesComponent } from './clientes/clientes.component';
+import { HistorialComponent } from './historial/historial.component';
+
+
 
 // Definir rutas
 const appRoutes: Routes = [
@@ -24,7 +31,7 @@ const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'Inicio', component: MenuInicioComponent },
-  { path: 'catalogo_universal', component: CatalogoUniComponent },
+  { path: 'catalogo_universal', component: CatalogoUniComponent ,},
 ];
 
 @NgModule({
@@ -33,7 +40,11 @@ const appRoutes: Routes = [
     CatalogoUniComponent,
     MenuInicioComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    PersonasComponent,
+    DocumentosComponent,
+    ClientesComponent,
+    HistorialComponent
   ],
   imports: [
     BrowserModule,

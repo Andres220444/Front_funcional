@@ -1,0 +1,40 @@
+<div class="p-6">
+  <h2 class="text-2xl font-bold mb-4 text-gray-800">Listado de Clientes</h2>
+
+  <input type="text"
+         [(ngModel)]="searchTerm"
+         placeholder="Buscar por nombre completo..."
+         class="mb-4 w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+  <div *ngIf="loading" class="text-center text-gray-500">Cargando clientes...</div>
+  <div *ngIf="error" class="text-red-600 text-center">Error al cargar los datos.</div>
+  <div *ngIf="!loading && clientesFiltrados.length === 0" class="text-center text-gray-400">No hay clientes encontrados.</div>
+
+  <div *ngIf="!loading && clientesFiltrados.length > 0" class="overflow-x-auto bg-white rounded-lg shadow">
+    <table class="min-w-full divide-y divide-gray-200">
+      <thead class="bg-gray-100">
+        <tr>
+          <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Nombre Completo</th>
+          <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Documento</th>
+          <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Fecha Nacimiento</th>
+          <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Correo</th>
+          <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Tipo Cliente</th>
+          <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Estado Cliente</th>
+        </tr>
+      </thead>
+      <tbody class="divide-y divide-gray-200">
+        <tr *ngFor="let cliente of clientesFiltrados" class="hover:bg-gray-50">
+          <td class="px-4 py-2 text-sm text-gray-700">
+            {{ cliente.Nombre1_Persona }} {{ cliente.Nombre2_Persona || '' }}
+            {{ cliente.Apellido1_Persona }} {{ cliente.Apellido2_Persona || '' }}
+          </td>
+          <td class="px-4 py-2 text-sm text-gray-600">{{ cliente.Tipo_Documento }} - {{ cliente.Num_Doc_Persona }}</td>
+          <td class="px-4 py-2 text-sm text-gray-600">{{ cliente.FNacimiento_Persona | date }}</td>
+          <td class="px-4 py-2 text-sm text-blue-700">{{ cliente.Correo_Contacto }}</td>
+          <td class="px-4 py-2 text-sm text-green-700">{{ cliente.Tipo_Cliente }}</td>
+          <td class="px-4 py-2 text-sm text-purple-700">{{ cliente.Estado_Cliente }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

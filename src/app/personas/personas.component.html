@@ -1,0 +1,82 @@
+<div class="personas-container">
+  <h2 class="titulo">Listado de Empleados</h2>
+
+  
+
+  <!-- Tarjeta de bienvenida -->
+  <div class="card-bienvenida">
+    <h3>👋 Bienvenido al panel de gestión de personal</h3>
+    <p>Consulta los datos actualizados de tus empleados y mantén al día la información de tu equipo.</p>
+  </div>
+
+  <div *ngIf="loading" class="loading-container">
+    <p>⏳ Cargando personas...</p>
+  </div>
+
+  <div *ngIf="!loading && personas.length === 0" class="mensaje-vacio">
+    <p>⚠️ No hay personas registradas.</p>
+  </div>
+
+  <div *ngIf="!loading && personas.length > 0" class="contenido-con-imagenes">
+    
+    <!-- Imagen izquierda -->
+    <div class="imagen-lateral">
+      <img src="../assets/trabajadoresia2.png" alt="Decoración izquierda">
+    </div>
+
+    <!-- Frases motivacionales -->
+    <div class="empresa-labels">
+      <div class="empresa-label">💡 Conviértete en el cambio que deseas ver en el mundo.</div>
+      <div class="empresa-label">🌟 El liderazgo no se trata de títulos, se trata de inspirar.</div>
+      <div class="empresa-label">🚀 Tu potencial es infinito, atrévete a explorarlo.</div>
+    </div>
+
+    <div class="bg-blue-500 text-white p-4 rounded-lg">
+      Tailwind is working!
+    </div>
+
+    <!-- Buscador de empleados -->
+<div class="buscador-empleados">
+  <input type="text" [(ngModel)]="filtroEmpleado" placeholder="🔍 Buscar empleado por nombre..." />
+  <button (click)="filtrarPersonas()">Buscar</button>
+</div>
+
+
+    <!-- Tabla de empleados -->
+    <div class="tabla-wrapper">
+      <table class="styled-table">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>👤 Empleado</th>
+            <th>📅 Ingreso</th>
+            <th>🎓 Cargo</th>
+            <th>🏢 Departamento</th>
+            <th>💰 Salario</th>
+            <th>📌 Estado</th>
+            <th>📞 Telefono</th>
+            <th>✉️ Correo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let p of personasFiltradas">
+            <td>{{ p.id_Personal }}</td>
+            <td>{{ p.Nombre1_Persona }} {{ p.Apellido1_Persona }}</td>
+            <td>{{ p.Fecha_Ingreso }}</td>
+            <td>{{ p.Cargo }}</td>
+            <td>{{ p.Departamento }}</td>
+            <td>{{ p.Salario }}</td>
+            <td>{{ p.Estado_Empleado }}</td>
+            <td>{{ p.Telefono_Oficina }}</td>
+            <td>{{ p.Correo_Empresarial }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Imagen derecha -->
+    <div class="imagen-lateral">
+      <img src="../assets/trabajadoresia1.png" alt="Decoración derecha">
+    </div>
+  </div>
+</div>

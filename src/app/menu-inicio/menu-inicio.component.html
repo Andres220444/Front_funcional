@@ -1,43 +1,71 @@
-<div class="main-container">
-    <div class="contact-bar">
-      <div class="contact-info">
-        <span>Llamanos: 01 8000 515 045</span>
+<div class="flex min-h-screen bg-gray-50">
+  <!-- Barra de contacto -->
+  <div class="w-64 bg-gray-200 p-5 flex flex-col justify-between">
+    <div>
+      <div class="flex flex-col space-y-2 text-sm text-gray-700 mb-6">
+        <span>Llámanos: 01 8000 515 045</span>
         <span>PBX: (604) 322 50 45</span>
         <span>Email: infolaboratorioslicol.com</span>
       </div>
-      <a href="#" class="data-policy">Política de Tratamiento de datos</a>
+      <a href="#" class="text-blue-600 font-semibold hover:underline text-sm">
+        Política de Tratamiento de datos
+      </a>
     </div>
-  
-    <div class="content">
-      <div class="navbar">
-        <a routerLink="/catalogo_universal">Catálogo</a>
-        <a routerLink="/persona">Persona</a>
-        <a routerLink="/contactos">Contactos</a>
-        <a routerLink="/documentos">Documentos</a>
-        <a routerLink="/historial">Historial</a>
+  </div>
+
+  <!-- Contenido principal -->
+  <div class="flex-1 flex flex-col">
+    <!-- Navbar -->
+    <nav class="bg-indigo-900 text-white px-6 py-4 flex justify-around font-semibold text-lg">
+      <a routerLink="/catalogo_universal" class="hover:underline">Catálogo</a>
+      <a routerLink="/clientes" class="hover:underline">clientes</a>
+      <a routerLink="/documentos" class="hover:underline">Documentos</a>
+      <a routerLink="/historial" class="hover:underline">Historial</a>
+      <a routerLink="/personas" class="hover:underline">Personas</a>
+    </nav>
+
+    <!-- Contenido Central -->
+    <div class="text-center py-8 px-4">
+      <img
+        src="../assets/imagen_laboratorio.png"
+        alt="Imagen central"
+        class="w-4/5 max-h-[400px] object-cover mx-auto rounded-lg shadow-md"
+      />
+
+      <div class="mt-6 flex justify-center gap-4">
+        <button
+          (mouseover)="showInfo('mision')"
+          (mouseleave)="hideInfo()"
+          class="bg-indigo-600 hover:bg-indigo-800 text-white px-6 py-2 rounded-md transition"
+        >
+          Misión
+        </button>
+        <button
+          (mouseover)="showInfo('vision')"
+          (mouseleave)="hideInfo()"
+          class="bg-indigo-600 hover:bg-indigo-800 text-white px-6 py-2 rounded-md transition"
+        >
+          Visión
+        </button>
       </div>
-  
-      <div class="container">
-        <img src="../assets/imagen_laboratorio.png" alt="Imagen central" class="main-image">
-  
-        <div class="buttons">
-          <button (mouseover)="showInfo('mision')" (mouseleave)="hideInfo()" class="btn">Misión</button>
-          <button (mouseover)="showInfo('vision')" (mouseleave)="hideInfo()" class="btn">Visión</button>
-        </div>
-  
-        <p class="info-text" *ngIf="infoText">{{ infoText }}</p>
-  
-        <div class="history">
-          <h2>Historia</h2>
-          <p>Laboratorios Licol S.A.S. Nace en 1956. En ese momento su portafolio contenía Agua oxigenada, Piperazina, Aceite de bacalao, 
-            Elixir “Licol” suplemento, entre otros. En la década de los 90 debido a la adquisición de la compañía se incursiona 
-            en el mercado de medicamentos y cosméticos, contribuyendo así al bienestar y mejoramiento de la salud en el mercado
-             colombiano. 25 años después Laboratorios Licol entra a ser parte de un grupo de empresas farmacéuticas junto con 
-             Laboratorios Remo de origen francés, ubicado en Bogotá. Al unir ambos portafolios la fusión Colombo-Francesa se 
-             proyecta en la industria, como un generador de bienestar mediante el desarrollo, producción y comercialización de 
-             marcas seguras y eficaces, con alto valor agregado y distribución a nivel nacional e internacional; adicionalmente
-              gracias a sus plantas cuenta con una  mayor capacidad de respuesta para los procesos productivos.</p>
-        </div>
+
+      <p
+        class="mt-4 text-base font-medium text-gray-700 max-w-3xl mx-auto"
+        *ngIf="infoText"
+      >
+        {{ infoText }}
+      </p>
+
+      <!-- Historia -->
+      <div class="bg-white shadow-md rounded-lg p-6 mt-10 mx-auto max-w-4xl text-left">
+        <h2 class="text-2xl font-bold text-indigo-800 mb-4">Historia</h2>
+        <p class="text-gray-700 leading-relaxed">
+          Laboratorios Licol S.A.S. nace en 1956. En ese momento su portafolio contenía Agua oxigenada, Piperazina, Aceite de bacalao, Elixir “Licol” suplemento, entre otros.
+          En la década de los 90, debido a la adquisición de la compañía, se incursiona en el mercado de medicamentos y cosméticos, contribuyendo así al bienestar y mejoramiento de la salud en el mercado colombiano. 25 años después Laboratorios Licol entra a ser parte de un grupo de empresas farmacéuticas junto con Laboratorios Remo de origen francés, ubicado en Bogotá.
+          <br><br>
+          Al unir ambos portafolios la fusión Colombo-Francesa se proyecta en la industria como un generador de bienestar mediante el desarrollo, producción y comercialización de marcas seguras y eficaces, con alto valor agregado y distribución a nivel nacional e internacional; adicionalmente, gracias a sus plantas cuenta con una mayor capacidad de respuesta para los procesos productivos.
+        </p>
       </div>
     </div>
   </div>
+</div>

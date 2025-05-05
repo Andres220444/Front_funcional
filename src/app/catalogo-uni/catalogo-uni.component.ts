@@ -19,7 +19,7 @@ export class CatalogoUniComponent {
       Router: Router
     ) { }
 
-    
+      
 //------------------------------------------------------------
   //LAS VARIABLES 
   title = "MANEJO DE CATALOGO UNIVERSAL";    //Titulo dela página
@@ -332,59 +332,49 @@ this.servi.getlCatEdit(this.BuscarEvalor ).subscribe((data: any) =>
 //-------------------------------------------------------------------------
 //Para insertar una nuevo catalogo
 
-public InsertarNuevoCatalogo()   
-{
- //variables para armar el JSON que se va a enviar al Back-End
- var datosvalo1 =  this.CrearCatalogoU.getRawValue()['textNueDenominacion']; 
- var datosvalo2 =  this.CrearCatalogoU.getRawValue()['textNueTipoCat'];
- var datosvalo3 =  this.CrearCatalogoU.getRawValue()['CBTipoCatalogo'];
+nuevoCatalogo = {
+  Tipo_Catalogo: null,
+  Denominacion_Catalogo: ''
+};
 
- //JSON armado
- var cadena = {"denominacion_universal":datosvalo1,
-               "catalogo_universal":datosvalo2,
-               "llaveforanea":datosvalo3,
-              };
-
- //se consume el servicio
- this.servi.CrearCatalogoU(cadena).then(res =>
- {
-   console.log(res)
- }).catch(err =>{
-   console.log(err)
- })
- //this.LimpiarFormulario();
- this.CrearCatalogoU.reset();
+crearCatalogo() {
+  this.servi.insertarNuevoCatalogo(this.nuevoCatalogo).subscribe({
+    next: res => {
+      console.log('Catálogo insertado correctamente', res);
+      // Aquí puedes limpiar el formulario o mostrar un mensaje de éxito
+    },
+    error: err => {
+      console.error('Error al insertar catálogo', err);
+    }
+  });
 }
+
 
 // -----------------------------------------------------------------------------------------
 // método para actualizar un catalogo .
 
-public ActualizarCatalogo() 
-{
+public ActualizarCatalogo() {
+  const datosvalo1 = this.ActCatalogoU.getRawValue()['CBCatalogoEdi'];
+  const datosvalo2 = this.ActCatalogoU.getRawValue()['textNueDenominacionEdi'];
+  const datosvalo3 = this.ActCatalogoU.getRawValue()['textNueTipoCatEdi'];
 
- //variables para armar el JSON que se va a enviar al Back-End
- var datosvalo1 =  this.ActCatalogoU.getRawValue()['CBCatalogoEdi'];
- var datosvalo2 =  this.ActCatalogoU.getRawValue()['textNueDenominacionEdi']; 
- var datosvalo3 =  this.ActCatalogoU.getRawValue()['textNueTipoCatEdi'];
- var datosvalo4 =  this.ActCatalogoU.getRawValue()['CBTipoCatalogoEdi'];
+  // JSON corregido para coincidir con el backend
+  const cadena = {
+    id_Catalogo: datosvalo1,
+    Denominacion_Catalogo: datosvalo2,
+    Tipo_Catalogo: datosvalo3
+  };
 
- //JSON armado
- var cadena = {"id_universal":datosvalo1,
-               "denominacion_universal":datosvalo2,
-               "catalogo_universal":datosvalo3,
-               "llaveforanea":datosvalo4
-              };
+  // Se consume el servicio
+  this.servi.ActualizarCatalogoU(cadena).then(res => {
+    console.log(res);
+  }).catch(err => {
+    console.error('Error al actualizar:', err);
+  });
 
- //se consume el servicio
- this.servi.ActualizarCatalogoU(cadena).then(res =>
- {
-   console.log(res)
- }).catch(err =>{
-   console.log(err)
- })
-
- this.CrearCatalogoU.reset();
+  this.ActCatalogoU.reset(); // Corrige el nombre del formulario
 }
+
 
 //=============================================================
 //LAS FUNCIONES PARA LLAMARLAS DESDE EL HTML
