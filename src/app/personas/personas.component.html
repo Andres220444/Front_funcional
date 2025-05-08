@@ -1,82 +1,207 @@
 <div class="personas-container">
   <h2 class="titulo">Listado de Empleados</h2>
 
-  
-
   <!-- Tarjeta de bienvenida -->
   <div class="card-bienvenida">
     <h3>👋 Bienvenido al panel de gestión de personal</h3>
     <p>Consulta los datos actualizados de tus empleados y mantén al día la información de tu equipo.</p>
   </div>
 
-  <div *ngIf="loading" class="loading-container">
+  <!-- Barra de búsqueda + Botón nuevo empleado -->
+  <div class="buscador-empleados flex justify-between items-center mb-4">
+    <input type="text"
+           [(ngModel)]="filtroEmpleado"
+           (input)="filtrarPersonas()"
+           placeholder="🔍 Buscar empleado por nombre..."
+           class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+
+    <button (click)="abrirModalNuevo()" class="ml-3 bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded-lg transition duration-200">
+      + Nuevo Empleado
+    </button>
+  </div>
+
+  <!-- Cargando / Vacío -->
+  <div *ngIf="loading" class="loading-container text-center py-4">
     <p>⏳ Cargando personas...</p>
   </div>
 
-  <div *ngIf="!loading && personas.length === 0" class="mensaje-vacio">
+  <div *ngIf="!loading && personas.length === 0" class="mensaje-vacio text-center py-4 text-gray-500">
     <p>⚠️ No hay personas registradas.</p>
   </div>
 
+  <!-- Tabla de empleados -->
   <div *ngIf="!loading && personas.length > 0" class="contenido-con-imagenes">
-    
-    <!-- Imagen izquierda -->
-    <div class="imagen-lateral">
-      <img src="../assets/trabajadoresia2.png" alt="Decoración izquierda">
-    </div>
+    <table class="styled-table w-full border-collapse mb-8">
+      <thead>
+        <tr class="bg-gray-200 text-left">
+          <th>#</th>
+          <th>👤 Empleado</th>
+          <th>📅 Ingreso</th>
+          <th>🎓 Cargo</th>
+          <th>🏢 Departamento</th>
+          <th>💰 Salario</th>
+          <th>📌 Estado</th>
+          <th>📞 Teléfono</th>
+          <th>✉️ Correo</th>
+          <th>🗑️ Acción</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let p of personasFiltradas" class="border-b hover:bg-gray-100">
+          <td>{{ p.id_Personal }}</td>
+          <td>{{ p.Nombre1_Persona }} {{ p.Apellido1_Persona }}</td>
+          <td>{{ p.Fecha_Ingreso }}</td>
+          <td>{{ p.Cargo }}</td>
+          <td>{{ p.Departamento }}</td>
+          <td>${{ p.Salario | number }}</td>
+          <td>{{ p.Estado_Empleado }}</td>
+          <td>{{ p.Telefono_Oficina }}</td>
+          <td>{{ p.Correo_Empresarial }}</td>
+          <td class="text-center">
+            <button (click)="eliminarEmpleado(p.id_Personal)" class="text-red-500 hover:text-red-700 font-bold">
+              &times;
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
-    <!-- Frases motivacionales -->
-    <div class="empresa-labels">
-      <div class="empresa-label">💡 Conviértete en el cambio que deseas ver en el mundo.</div>
-      <div class="empresa-label">🌟 El liderazgo no se trata de títulos, se trata de inspirar.</div>
-      <div class="empresa-label">🚀 Tu potencial es infinito, atrévete a explorarlo.</div>
+    <!-- Imágenes decorativas -->
+    <div class="flex justify-between mt-8">
+      <div class="imagen-lateral">
+        <img src="../assets/trabajadoresia2.png" alt="Decoración izquierda">
+      </div>
+      <div class="imagen-lateral">
+        <img src="../assets/trabajadoresia1.png" alt="Decoración derecha">
+      </div>
     </div>
-
-    <div class="bg-blue-500 text-white p-4 rounded-lg">
-      Tailwind is working!
-    </div>
-
-    <!-- Buscador de empleados -->
-<div class="buscador-empleados">
-  <input type="text" [(ngModel)]="filtroEmpleado" placeholder="🔍 Buscar empleado por nombre..." />
-  <button (click)="filtrarPersonas()">Buscar</button>
+  </div>
 </div>
+<!-- Modal para Crear Empleado -->
+<div *ngIf="mostrarModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-lg">
+    <h3 class="text-xl font-bold mb-4 text-gray-800">Nuevo Empleado</h3>
 
+    <form (ngSubmit)="guardarEmpleado()" #empleadoForm="ngForm">
 
-    <!-- Tabla de empleados -->
-    <div class="tabla-wrapper">
-      <table class="styled-table">
-        <thead>
-          <tr>
-            <th>#</th>
-            <th>👤 Empleado</th>
-            <th>📅 Ingreso</th>
-            <th>🎓 Cargo</th>
-            <th>🏢 Departamento</th>
-            <th>💰 Salario</th>
-            <th>📌 Estado</th>
-            <th>📞 Telefono</th>
-            <th>✉️ Correo</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let p of personasFiltradas">
-            <td>{{ p.id_Personal }}</td>
-            <td>{{ p.Nombre1_Persona }} {{ p.Apellido1_Persona }}</td>
-            <td>{{ p.Fecha_Ingreso }}</td>
-            <td>{{ p.Cargo }}</td>
-            <td>{{ p.Departamento }}</td>
-            <td>{{ p.Salario }}</td>
-            <td>{{ p.Estado_Empleado }}</td>
-            <td>{{ p.Telefono_Oficina }}</td>
-            <td>{{ p.Correo_Empresarial }}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+      <!-- Persona -->
+      <div class="mb-4">
+        <label for="persona" class="block text-sm font-medium text-gray-700 mb-1">Persona</label>
+        <select id="persona"
+                [(ngModel)]="nuevoEmpleado.Persona_Empleado"
+                name="Persona_Empleado"
+                required
+                class="w-full p-2 border border-gray-300 rounded">
+          <option value="">Selecciona una persona</option>
+          <option *ngFor="let persona of personasSelect" [value]="persona.id_Persona">
+            {{ persona.Nombre1_Persona }} {{ persona.Apellido1_Persona }}
+          </option>
+        </select>
+      </div>
 
-    <!-- Imagen derecha -->
-    <div class="imagen-lateral">
-      <img src="../assets/trabajadoresia1.png" alt="Decoración derecha">
-    </div>
+      <!-- Fecha de Ingreso -->
+      <div class="mb-4">
+        <label for="fechaIngreso" class="block text-sm font-medium text-gray-700 mb-1">Fecha de Ingreso</label>
+        <input id="fechaIngreso"
+               type="date"
+               [(ngModel)]="nuevoEmpleado.Fecha_Ingreso"
+               name="Fecha_Ingreso"
+               required
+               class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+
+      <!-- Cargo -->
+      <div class="mb-4">
+        <label for="cargo" class="block text-sm font-medium text-gray-700 mb-1">Cargo</label>
+        <select id="cargo"
+                [(ngModel)]="nuevoEmpleado.Cargo"
+                name="Cargo"
+                required
+                class="w-full p-2 border border-gray-300 rounded">
+          <option value="">Selecciona cargo</option>
+          <option *ngFor="let c of cargos" [value]="c.id_Catalogo">
+            {{ c.Denominacion_Catalogo }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Departamento -->
+      <div class="mb-4">
+        <label for="departamento" class="block text-sm font-medium text-gray-700 mb-1">Departamento</label>
+        <select id="departamento"
+                [(ngModel)]="nuevoEmpleado.Departamento"
+                name="Departamento"
+                required
+                class="w-full p-2 border border-gray-300 rounded">
+          <option value="">Selecciona departamento</option>
+          <option *ngFor="let d of departamentos" [value]="d.id_Catalogo">
+            {{ d.Denominacion_Catalogo }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Salario -->
+      <div class="mb-4">
+        <label for="salario" class="block text-sm font-medium text-gray-700 mb-1">Salario</label>
+        <input id="salario"
+               type="number"
+               [(ngModel)]="nuevoEmpleado.Salario"
+               name="Salario"
+               required
+               placeholder="Ej: 1200000"
+               class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+
+      <!-- Estado del Empleado -->
+      <div class="mb-4">
+        <label for="estadoEmpleado" class="block text-sm font-medium text-gray-700 mb-1">Estado del Empleado</label>
+        <select id="estadoEmpleado"
+                [(ngModel)]="nuevoEmpleado.Estado_Empleado"
+                name="Estado_Empleado"
+                required
+                class="w-full p-2 border border-gray-300 rounded">
+          <option value="">Selecciona estado</option>
+          <option *ngFor="let e of estadosEmpleado" [value]="e.id_Catalogo">
+            {{ e.Denominacion_Catalogo }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Teléfono Oficina -->
+      <div class="mb-4">
+        <label for="telefono" class="block text-sm font-medium text-gray-700 mb-1">Teléfono Oficina</label>
+        <input id="telefono"
+               type="text"
+               [(ngModel)]="nuevoEmpleado.Telefono_Oficina"
+               name="Telefono_Oficina"
+               placeholder="Ej: 3242323322"
+               class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+
+      <!-- Correo Empresarial -->
+      <div class="mb-4">
+        <label for="correo" class="block text-sm font-medium text-gray-700 mb-1">Correo Empresarial</label>
+        <input id="correo"
+               type="email"
+               [(ngModel)]="nuevoEmpleado.Correo_Empresarial"
+               name="Correo_Empresarial"
+               required
+               placeholder="juan@empresa.com"
+               class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+
+      <!-- Botones -->
+      <div class="flex justify-end space-x-3 mt-6">
+        <button type="button" (click)="cerrarModal()"
+                class="px-4 py-2 bg-gray-300 hover:bg-gray-400 text-gray-800 rounded transition duration-200">
+          Cancelar
+        </button>
+        <button type="submit"
+                [disabled]="!empleadoForm.form.valid"
+                class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded transition duration-200 disabled:bg-blue-300">
+          Guardar
+        </button>
+      </div>
+    </form>
   </div>
 </div>

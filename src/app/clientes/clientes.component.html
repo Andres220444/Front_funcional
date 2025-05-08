@@ -1,15 +1,32 @@
 <div class="p-6">
   <h2 class="text-2xl font-bold mb-4 text-gray-800">Listado de Clientes</h2>
 
-  <input type="text"
-         [(ngModel)]="searchTerm"
-         placeholder="Buscar por nombre completo..."
-         class="mb-4 w-full md:w-1/2 px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500" />
+  <!-- Barra de búsqueda -->
+  <div class="flex flex-col md:flex-row gap-2 mb-4">
+    <input 
+      type="text"
+      [(ngModel)]="searchTerm"
+      placeholder="Buscar por nombre completo..."
+      class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    <button 
+      (click)="abrirModalNuevo()" 
+      class="bg-green-500 hover:bg-green-600 text-white px-4 py-2 rounded transition duration-200"
+    >
+      Nuevo Cliente
+    </button>
+  </div>
 
+  <!-- Estado de carga -->
   <div *ngIf="loading" class="text-center text-gray-500">Cargando clientes...</div>
   <div *ngIf="error" class="text-red-600 text-center">Error al cargar los datos.</div>
-  <div *ngIf="!loading && clientesFiltrados.length === 0" class="text-center text-gray-400">No hay clientes encontrados.</div>
 
+  <!-- Mensaje sin resultados -->
+  <div *ngIf="!loading && clientesFiltrados.length === 0 && searchTerm" class="text-center text-gray-400">
+    No se encontraron clientes con esa búsqueda.
+  </div>
+
+  <!-- Tabla de clientes -->
   <div *ngIf="!loading && clientesFiltrados.length > 0" class="overflow-x-auto bg-white rounded-lg shadow">
     <table class="min-w-full divide-y divide-gray-200">
       <thead class="bg-gray-100">
@@ -19,7 +36,8 @@
           <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Fecha Nacimiento</th>
           <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Correo</th>
           <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Tipo Cliente</th>
-          <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Estado Cliente</th>
+          <th class="px-4 py-3 text-left text-sm font-semibold text-gray-600">Estado</th>
+          <th class="px-4 py-3 text-right text-sm font-semibold text-gray-600">Acciones</th>
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-200">
@@ -28,13 +46,88 @@
             {{ cliente.Nombre1_Persona }} {{ cliente.Nombre2_Persona || '' }}
             {{ cliente.Apellido1_Persona }} {{ cliente.Apellido2_Persona || '' }}
           </td>
-          <td class="px-4 py-2 text-sm text-gray-600">{{ cliente.Tipo_Documento }} - {{ cliente.Num_Doc_Persona }}</td>
+          <td class="px-4 py-2 text-sm text-gray-600">
+            {{ cliente.Tipo_Documento }} - {{ cliente.Num_Doc_Persona }}
+          </td>
           <td class="px-4 py-2 text-sm text-gray-600">{{ cliente.FNacimiento_Persona | date }}</td>
           <td class="px-4 py-2 text-sm text-blue-700">{{ cliente.Correo_Contacto }}</td>
           <td class="px-4 py-2 text-sm text-green-700">{{ cliente.Tipo_Cliente }}</td>
           <td class="px-4 py-2 text-sm text-purple-700">{{ cliente.Estado_Cliente }}</td>
+          <td class="px-4 py-2 text-sm text-right">
+            <button
+              (click)="eliminarCliente(cliente.id_Cliente)"
+              class="ml-2 text-red-600 hover:text-red-900"
+              title="Eliminar cliente"
+            >
+              &times; Eliminar
+            </button>
+          </td>
         </tr>
       </tbody>
     </table>
+  </div>
+</div>
+
+<!-- Modal para crear nuevo cliente -->
+<div *ngIf="mostrarModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+  <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md">
+    <h3 class="text-xl font-bold mb-4">Nuevo Cliente</h3>
+
+    <form (ngSubmit)="guardarCliente()">
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Persona</label>
+        <select [(ngModel)]="nuevoCliente.Persona_Cliente" name="Persona_Cliente" required
+                class="w-full p-2 border border-gray-300 rounded">
+          <option value="">Selecciona una persona</option>
+          <option *ngFor="let p of personas" [value]="p.id_Persona">
+            {{ p.Nombre1_Persona }} {{ p.Apellido1_Persona }} ({{ p.Num_Doc_Persona }})
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Fecha Registro</label>
+        <input type="date" [(ngModel)]="nuevoCliente.Fecha_Registro" name="Fecha_Registro" required
+               class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Correo Contacto</label>
+        <input type="email" [(ngModel)]="nuevoCliente.Correo_Contacto" name="Correo_Contacto" required
+               class="w-full p-2 border border-gray-300 rounded" />
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Tipo Cliente</label>
+        <select [(ngModel)]="nuevoCliente.Tipo_Cliente" name="Tipo_Cliente" required
+                class="w-full p-2 border border-gray-300 rounded">
+          <option value="">Selecciona tipo de cliente</option>
+          <option *ngFor="let t of tiposCliente" [value]="t.id_Catalogo">
+            {{ t.Denominacion_Catalogo }}
+          </option>
+        </select>
+      </div>
+
+      <div class="mb-4">
+        <label class="block text-sm font-medium text-gray-700 mb-1">Estado Cliente</label>
+        <select [(ngModel)]="nuevoCliente.Estado_Cliente" name="Estado_Cliente" required
+                class="w-full p-2 border border-gray-300 rounded">
+          <option value="">Selecciona estado</option>
+          <option *ngFor="let e of estadosCliente" [value]="e.id_Catalogo">
+            {{ e.Denominacion_Catalogo }}
+          </option>
+        </select>
+      </div>
+
+      <div class="flex justify-end space-x-3 mt-6">
+        <button type="button" (click)="cerrarModal()"
+                class="px-4 py-2 bg-gray-300 rounded hover:bg-gray-400 transition">
+          Cancelar
+        </button>
+        <button type="submit" class="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition">
+          Guardar
+        </button>
+      </div>
+    </form>
   </div>
 </div>

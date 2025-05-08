@@ -17,8 +17,8 @@
   <div class="flex-1 flex flex-col">
     <!-- Navbar -->
     <nav class="bg-indigo-900 text-white px-6 py-4 flex justify-around font-semibold text-lg">
-      <a routerLink="/catalogo_universal" class="hover:underline">Catálogo</a>
-      <a routerLink="/clientes" class="hover:underline">clientes</a>
+      <a routerLink="/catalogo_universal" class="hover:underline">Administrador de catálogos</a>
+      <a routerLink="/clientes" class="hover:underline">Clientes</a>
       <a routerLink="/documentos" class="hover:underline">Documentos</a>
       <a routerLink="/historial" class="hover:underline">Historial</a>
       <a routerLink="/personas" class="hover:underline">Personas</a>
@@ -32,6 +32,7 @@
         class="w-4/5 max-h-[400px] object-cover mx-auto rounded-lg shadow-md"
       />
 
+      <!-- Botones Misión y Visión -->
       <div class="mt-6 flex justify-center gap-4">
         <button
           (mouseover)="showInfo('mision')"
@@ -49,9 +50,11 @@
         </button>
       </div>
 
+      <!-- Texto de Misión o Visión -->
       <p
-        class="mt-4 text-base font-medium text-gray-700 max-w-3xl mx-auto"
         *ngIf="infoText"
+        class="mt-4 text-base font-medium text-gray-700 max-w-3xl mx-auto"
+        [style.textAlign]="'center'"
       >
         {{ infoText }}
       </p>

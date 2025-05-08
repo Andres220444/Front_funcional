@@ -1,122 +1,200 @@
 /* Contenedor principal */
-.main-container {
-    display: flex;
-  }
-  
-  /* Barra de contacto */
-  .contact-bar {
-    width: 250px; /* Ancho de la barra de contacto */
-    background-color: #f5f5f5;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-  }
-  
-  .contact-info {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 20px;
-  }
-  
-  .contact-info span {
-    margin-bottom: 10px;
-    font-size: 14px;
-    color: #333;
-  }
-  
-  .data-policy {
-    color: #4d4dfd;
-    text-decoration: none;
-    font-weight: bold;
-    font-size: 14px;
-  }
-  
-  .data-policy:hover {
-    text-decoration: underline;
-  }
-  
-  /* Contenido principal */
-  .content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  /* Barra de navegación */
-  .navbar {
-    display: flex;
-    justify-content: space-around;
-    background-color: #22227d;
-    padding: 15px 0;
-  }
-  
-  .navbar a {
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-  }
-  
-  .navbar a:hover {
-    text-decoration: underline;
-  }
-  
-  /* Contenedor principal */
-  .container {
-    text-align: center;
-    margin-top: 20px;
-  }
-  
-  /* Imagen central */
-  .main-image {
-    width: 80%;
-    max-height: 400px;
-    object-fit: cover;
-    border-radius: 10px;
-  }
-  
-  /* Botones */
-  .buttons {
-    margin-top: 20px;
-  }
-  
-  .btn {
-    background-color: #4d4dfd;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    margin: 5px;
-    border-radius: 5px;
-    transition: 0.3s;
-  }
-  
-  .btn:hover {
-    background-color: #22227d;
-  }
-  
-  /* Texto de misión/visión */
-  .info-text {
-    margin-top: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    color: #333;
-  }
-  
-  /* Sección historia */
-  .history {
-    background-color: #f5f5f5;
-    padding: 20px;
-    margin-top: 30px;
-    border-radius: 10px;
-    max-width: 80%;
-    margin-left: auto;
-    margin-right: auto;
-  }
-  
-  .history h2 {
-    font-size: 22px;
-    font-weight: bold;
-  }
+.flex {
+  display: flex;
+}
+
+.min-h-screen {
+  min-height: 100vh;
+}
+
+.bg-gray-50 {
+  background-color: #f9fafb; /* Fondo claro */
+}
+
+/* Barra lateral de contacto */
+.w-64 {
+  width: 16rem;
+}
+
+.bg-gray-200 {
+  background-color: #e5e7eb;
+}
+
+.p-5 {
+  padding: 1.25rem;
+}
+
+.space-y-2 > :not([hidden]) ~ :not([hidden]) {
+  margin-top: 0.5rem;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+}
+
+.text-gray-700 {
+  color: #374151;
+}
+
+.mb-6 {
+  margin-bottom: 1.5rem;
+}
+
+/* Enlace de política de datos */
+.hover\:underline:hover {
+  text-decoration: underline;
+}
+
+.text-blue-600 {
+  color: #2563eb;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+/* Navbar */
+nav {
+  background-color: #6a5acf; /* Indigo oscuro */
+  color: white;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+nav a {
+  color: white;
+  text-decoration: none;
+  padding: 0.625rem 1.25rem;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* Imagen central */
+img {
+  max-width: 80%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 0 auto;
+  display: block;
+}
+
+/* Botones Misión y Visión */
+.mt-6 {
+  margin-top: 1.5rem;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.gap-4 {
+  gap: 1rem;
+}
+
+button {
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 0.375rem;
+}
+
+.bg-indigo-600 {
+  background-color: #6366f1;
+}
+
+.bg-indigo-800:hover {
+  background-color: #4f46e5;
+}
+
+.text-white {
+  color: white;
+}
+
+.rounded-md {
+  border-radius: 0.375rem;
+}
+
+.transition {
+  transition: all 0.3s ease;
+}
+
+/* Texto informativo (Misión / Visión) */
+.mt-4 {
+  margin-top: 1rem;
+}
+
+.max-w-3xl {
+  max-width: 64rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.text-base {
+  font-size: 1rem;
+}
+
+.font-medium {
+  font-weight: 500;
+}
+
+.leading-relaxed {
+  line-height: 1.625;
+}
+
+.text-gray-700 {
+  color: #374151;
+}
+
+[style*="text-align: center"] {
+  text-align: center !important;
+}
+
+/* Historia */
+.historia,
+.historia p {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+.historia h2 {
+  color: #6a5acf;
+  font-size: 1.875rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+/* Efectos adicionales */
+.shadow-md {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.rounded-lg {
+  border-radius: 0.5rem;
+}
+
+.p-6 {
+  padding: 1.5rem;
+}
+
+.bg-white {
+  background-color: #ffffff;
+}
+
+/* Animación suave en botones */
+button:hover {
+  transform: scale(1.05);
+}
